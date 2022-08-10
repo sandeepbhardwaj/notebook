@@ -1,0 +1,210 @@
+============================
+Reverse
+============================
+1. Reverse the array
+
+2  Reverse integer (without using long) - https://leetcode.com/problems/reverse-integer/
+	Code:
+	- 	tricky if you can't store the output in long, overflow cases are important
+		temp = rev * 10 + pop; statement can cause overflow.
+
+		Integer.MIN_VALUE = -2147483648  , Integer.MAX_VALUE = 2147483647
+
+
+		if (rev > Integer.MAX_VALUE/10 || (rev == Integer.MAX_VALUE / 10 && pop > 7)) return 0; // why 7 ? because due to max value
+		if (rev < Integer.MIN_VALUE/10 || (rev == Integer.MIN_VALUE / 10 && pop < -8)) return 0; // why -8 ? because due to min value
+	      
+
+3. Reverse string recursively
+	Code:
+		return reverse(str.substring(1)) + str.charAt(0);
+
+4. Reverse Words in a String (ReverseWords) - https://leetcode.com/problems/reverse-words-in-a-string-iii/
+
+Similar 
+	- Reverse Only Letters - https://leetcode.com/problems/reverse-only-letters/
+
+
+============================
+Rotate
+============================
+5. Write a program to cyclically rotate an array by one. - Reversal algorithm - https://leetcode.com/problems/rotate-array/
+	Code:
+		//reverse complete array
+		reverse(nums, 0, nums.length - 1);
+		//reverse k elements
+		reverse(nums, 0, k - 1);
+		//reverse k to n elements
+		reverse(nums, k, nums.length - 1);
+
+6. Kadane’s Algorithm - Maximum Subarray
+	Code:
+		max_end_here=Math.max(num,max_end_here+num);        
+	    max_so_far=Math.max(max_so_far,max_end_here);
+
+7. Best Time to Buy and Sell Stock - https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+	- Similar to kadane's algo
+
+
+============================
+PreSum - SubArray
+============================
+8. Largest Subarray with 0 sum - https://practice.geeksforgeeks.org/problems/largest-subarray-with-0-sum/1
+	Code:
+	if (preSum.containsKey(currSum)) {}
+
+9. Find subarray with given sum - https://www.geeksforgeeks.org/find-subarray-with-given-sum/
+	- Positive Numbers - if numbers are non negative then we can use two pointer approach (ContinuousSubArrayWithGivenSum)
+	- With Negative numbers - can be done using preSum.
+	Code:
+		arr =    1 2 2 1 1    find=4
+		preSum = 1 3 5 6 7    preSum.containsKey(currentSum - k) => preSum.containsKey(5 - 4)
+		Similar to que 8. 
+
+9. Subarray Sum Equals K (Count of all subarrays)- https://leetcode.com/problems/subarray-sum-equals-k/ - Again
+	- key as preSum and value as frequency
+
+Similar
+	- Longest Subarray of sum K
+
+
+============================
+Sliding Window
+============================
+
+----------------------------
+Fixed Size Window
+----------------------------
+10. Max sum of 'k' consecutive elements in the array - MaxSumSubArrayOfSizeK
+	Code
+	if (right - left + 1 < k) { //if window is smaller than k , increase window size
+		right++; 
+	} 
+	else if (right - left + 1 == k) { // window is equal to k
+		left++; // reduce the window
+	}
+
+11. Ist -ve number in every window of Size K (IstNegativeInWindowOfSizeK)- use queue
+
+12. Find All Anagrams in a String / Count Occurrences of Anagrams [Imp] - https://leetcode.com/problems/find-all-anagrams-in-a-string/
+	Code: Brute Force
+	N= str len , n= ptr len
+	for (int i = 0; i <= N - n; i++) {
+
+	    String s = text.substring(i, i + n);
+
+	    // Check if the word and substring are
+	    // anagram of each other.
+	    if (araAnagram(word, s))
+	        res++;
+	}
+
+13. Maximum of all subarrays of size k (SlidingWindowMaximum) - use heap to get max element
+	Code
+	PriorityQueue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder());
+
+	queue.remove(nums[left]); // imp remove the left element. Don't do queue.poll()
+
+14. Minimum Window Substring[Imp]
+
+----------------------------
+Variable Size Window
+----------------------------
+
+15. Longest Substring Without Repeating Characters - use set to find out the longest substr simple
+16. Longest Substring With K Unique Characters [Imp] - TODO 
+
+
+============================
+Binary Search
+============================
+Code
+	int mid = low + ((high - low) / 2);
+
+17. FirstAndLastPositionOfElementInSortedArray
+
+18. SearchInRotatedSortedArray
+	Code
+		if (nums[low] <= nums[mid]) { }//left part is sorted
+
+19. SearchInRotatedSortedArrayWithDuplicates
+	Code
+	// if none of the part is sorted
+	if (nums[low] == nums[mid] && nums[high] == nums[mid]) { // Imp step
+		++low;
+		--high;
+	}
+	// left part is sorted
+	else if (nums[low] <= nums[mid]) {
+		if (nums[low] <= target && target < nums[mid]) {
+			high = mid - 1;
+		} else {
+			low = mid + 1;
+		}
+	}
+	// second half is sorted
+	else {
+		if (nums[mid + 1] <= target && target <= nums[high]) {
+			low = mid + 1;
+		} else {
+			high = mid - 1;
+		}
+	}
+
+20. PeakIndexInMountainArray/Find Peak Element
+	Code
+	// low should be always smaller than high to avoid ArrayIndexOutOfBoundException
+	while (low < high) {
+		int mid = low + (high - low) / 2;
+
+		if (A[mid] < A[mid + 1]) { // mid is smaller than its next element
+			low = mid + 1;
+		} else if (A[mid] < A[mid - 1]) { // mid is smaller than its previous element
+			high = mid;
+		} else { // mid is greater than it's prev and next element
+			return mid;
+		}
+	}
+
+21. FindMinimumInRotatedSortedArray - Pivot element - TODO
+	Code
+	// why < not <= ? because we want to partition of array not looking for target element
+	// DO NOT use left <= right because that would loop forever
+	while (low < high) {
+		int mid = low + ((high - low) / 2);
+
+		if (nums[mid] < nums[high]) {
+			high = mid;
+		} else if (nums[mid] > nums[high]) {
+			low = mid + 1;
+		}
+	}
+	return nums[low];
+
+Pivot element
+	Given an sorted integer array of size N which is also rotated by an unknown position. Input Array is not monotonically increasing as it is rotated at some unknown pivot element. We have to find the pivot element of array.
+	Pivot element is the only element in input array which is smaller than it's previous element. A pivot element divided a sorted rotated array into two monotonically increasing array.
+	In sorted and rotated array, pivot element(minimum element) is the only element which is smaller than it's previous element.
+
+
+============================
+Misc
+============================
+- SortColors
+
+- PascalTriangle
+
+- MajorityElement (N/2)- Moore’s Voting Algorithm
+
+- Merge Intervals
+
+- MultiplyStrings
+
+- Sieve of Eratosthenes
+
+- LargestNumber - use comparator
+
+- FirstMissingSmallestPositiveInteger
+
+- RomanToInteger, AncestralNames
+
