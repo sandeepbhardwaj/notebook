@@ -1,0 +1,55 @@
+1. Set Matrix Zero
+    Using two dummy arrays for row and column
+    Code
+        if(dummy1[i]==0  || dummy2[j]==0) then arr[i][j]=0,else continue.
+
+2. Transpose matrix
+    Code
+    for (int i = 0; i < n; i++) {
+        //j < i – all the elemets till diagonal
+        for (int j = 0; j < i; j++) {
+            //swap
+        }
+    }
+
+3. Rotate image by 90 degree
+    Code
+    static int[][] rotate(int[][] matrix) {
+        int n = matrix.length;
+        int rotated[][] = new int[n][n];
+        for (int row = 0; row < n; row++) {
+            for (int col = 0; col < n; col++) {
+                rotated[col][n - row - 1] = matrix[row][col]; // last column (n-row-1)
+            }
+        }
+        return rotated;
+    }
+
+    Without using extra space
+    Step 1. transpose matrix
+    Step 2: reverse elements
+    Code
+    for (int i = 0; i < n; i++) {
+        for (int left = 0, right = n - 1; left < right; left++, right--) {
+            //swapping first element with last element
+            int temp = matrix[i][left];
+            matrix[i][left] = matrix[i][right];
+            matrix[i][right] = temp;
+        }
+    }
+
+4. Search in a sorted 2D matrix
+    Code
+    int val= matrix[mid/col][mid%col];
+
+5. Grid Unique Paths | Count paths from left-top to the right bottom of a matrix
+    Code
+    public int countPaths(int i,int j,int n,int m){
+        if(i==(n-1)&&j==(m-1)) return 1;
+        
+        if(i>=n||j>=m) return 0;
+        // move down (i+1) , move right (j+1)
+        else return countPaths(i+1,j,n,m)+countPaths(i,j+1,n,m); 
+    }
+
+ 

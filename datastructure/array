@@ -40,6 +40,23 @@ Rotate
 		max_end_here=Math.max(num,max_end_here+num);        
 	    max_so_far=Math.max(max_so_far,max_end_here);
 
+	Code: To find indexes of start and end of the subarray
+	for (int i = 1; i < nums.length; i++) {
+		// add current element to running sum
+		max_ending_here = max_ending_here + nums[i];
+
+		if (max_ending_here < nums[i]) {
+			max_ending_here = nums[i];
+			tempStart = i; // reset the temp start
+		}
+
+		if (max_ending_here > max_so_far) {
+			max_so_far = max_ending_here;
+			start = tempStart;
+			end = i;
+		}
+	}
+
 7. Best Time to Buy and Sell Stock - https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
 	- Similar to kadane's algo
 
@@ -122,6 +139,8 @@ Code
 
 18. SearchInRotatedSortedArray
 	Code
+		// V.V.IMP why we are considering mid here not mid-1 ?
+		// if we do mid-1 it may throw IndexOutOfBoundsException if [mid] points to 0
 		if (nums[low] <= nums[mid]) { }//left part is sorted
 
 19. SearchInRotatedSortedArrayWithDuplicates
@@ -189,11 +208,56 @@ Misc
 ============================
 - SortColors
 - PascalTriangle
+	Code
+	// First and last values in every row are 1
+	if (j == 0 || j == i) {
+		list.add(1);
+	} else {
+		// get the above row
+		List<Integer> prev = result.get(i - 1);
+		// get the above elements
+		list.add(prev.get(j - 1) + prev.get(j));
+	}
+
 - MajorityElement (N/2)- Moore’s Voting Algorithm
+
 - Merge Intervals
+	Code
+	Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+	return result.toArray(new int[result.size()][]);
+
+	Note :- Arrays.sort uses dual-pivot Quicksort on primitives. It offers O(n log(n)) performance and is typically faster than traditional (one-pivot) Quicksort implementations. However, it uses a stable, adaptive, iterative implementation of mergesort algorithm for Array of Objects.
+	According to Java 7 API docs cited, Arrays#Sort() for object arrays now uses TimSort, which is a hybrid of MergeSort and InsertionSort
+
+- Find the duplicate in an array of N+1 integers
+	Hint: Linked List cycle method – Imp
+
+- Implement Pow(x,n) | X raised to the power N
+	approach : Using Binary Exponentiation
+	Code
+		if (temp_n % 2 == 1) {
+			ans = ans * x;
+			temp_n = temp_n - 1;
+		} else {
+			x = x * x;
+			temp_n = temp_n / 2;
+		}
+
+- Find the Majority Element that occurs more than N/2 times - Moore’s Voting Algorithm
+- Majority Elements (>N/3 times) - Extended Boyer Moore’s Voting Algorithm
+
+- Longest Consecutive Sequence in an Array - [Imp]
+
 - MultiplyStrings
 - Sieve of Eratosthenes
 - LargestNumber - use comparator
 - FirstMissingSmallestPositiveInteger
 - RomanToInteger, AncestralNames
+
+- Next Permutation
+	Step 1: - Find the first decreasing sequence from end. Example {1, 1, 5, 4, 1} 
+	Step 2: - Find number just greater element than element found at step 1. Example arr[1] and swap the two numbers
+	{1, 1, 5, 4, 1} >> swap {1, 4, 5, 1, 1} 
+	Step 3: - Reverse rest of the elements, from i+1 index
+	{1, 4, 5, 1, 1} >> {1, 4, 1, 1, 5}
 
