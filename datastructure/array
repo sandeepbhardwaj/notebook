@@ -72,7 +72,7 @@ Sliding Window
 ----------------------------
 Fixed Size Window
 ----------------------------
-1.  Max sum of 'k' consecutive elements in the array - MaxSumSubArrayOfSizeK
+10.  Max sum of 'k' consecutive elements in the array - MaxSumSubArrayOfSizeK
 	Code
 	if (right - left + 1 < k) { //if window is smaller than k , increase window size
 		right++; 
