@@ -1,0 +1,13 @@
+1. Implement stack using array/linked list
+2. Implement stack using queue
+3. Minimum stack implementation
+4. Next greater element to Right
+	- loop from 0 to n-1
+	- compaire element with peek element
+	- add index in stack
+5. Smaller element on left
+	- loop from n-1 to 0
+6. Reverse Substrings Between Each Pair of Parentheses (Imp) - https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/
+	- Stack usage
+		- keep adding till ) not encounter
+		- if found ) then pop till ( and reverse and store back in stack.

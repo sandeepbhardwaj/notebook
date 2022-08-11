@@ -1,9 +1,8 @@
-============================
 Reverse
 ============================
 1. Reverse the array
 
-2  Reverse integer (without using long) - https://leetcode.com/problems/reverse-integer/
+2.  Reverse integer (without using long) - https://leetcode.com/problems/reverse-integer/
 	Code:
 	- 	tricky if you can't store the output in long, overflow cases are important
 		temp = rev * 10 + pop; statement can cause overflow.
@@ -25,7 +24,6 @@ Similar
 	- Reverse Only Letters - https://leetcode.com/problems/reverse-only-letters/
 
 
-============================
 Rotate
 ============================
 5. Write a program to cyclically rotate an array by one. - Reversal algorithm - https://leetcode.com/problems/rotate-array/
@@ -46,7 +44,6 @@ Rotate
 	- Similar to kadane's algo
 
 
-============================
 PreSum - SubArray
 ============================
 8. Largest Subarray with 0 sum - https://practice.geeksforgeeks.org/problems/largest-subarray-with-0-sum/1
@@ -61,21 +58,21 @@ PreSum - SubArray
 		preSum = 1 3 5 6 7    preSum.containsKey(currentSum - k) => preSum.containsKey(5 - 4)
 		Similar to que 8. 
 
-9. Subarray Sum Equals K (Count of all subarrays)- https://leetcode.com/problems/subarray-sum-equals-k/ - Again
+10. Subarray Sum Equals K (Count of all subarrays)- https://leetcode.com/problems/subarray-sum-equals-k/ - Again
 	- key as preSum and value as frequency
 
 Similar
 	- Longest Subarray of sum K
 
 
-============================
+
 Sliding Window
 ============================
 
 ----------------------------
 Fixed Size Window
 ----------------------------
-10. Max sum of 'k' consecutive elements in the array - MaxSumSubArrayOfSizeK
+1.  Max sum of 'k' consecutive elements in the array - MaxSumSubArrayOfSizeK
 	Code
 	if (right - left + 1 < k) { //if window is smaller than k , increase window size
 		right++; 
@@ -191,20 +188,12 @@ Pivot element
 Misc
 ============================
 - SortColors
-
 - PascalTriangle
-
 - MajorityElement (N/2)- Moore’s Voting Algorithm
-
 - Merge Intervals
-
 - MultiplyStrings
-
 - Sieve of Eratosthenes
-
 - LargestNumber - use comparator
-
 - FirstMissingSmallestPositiveInteger
-
 - RomanToInteger, AncestralNames
 

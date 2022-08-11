@@ -1,0 +1,60 @@
+Day 17 - Binary Tree
+--------------------
+1. Inorder Traversal
+    while (!stack.isEmpty() || current != null) {
+        loop to go extreme left
+        get the element from stack and add to result
+        current = node.right; // get the right of node and assign it to current
+    }
+
+2. Preorder Traversal
+    add node to stack
+    till stack !isEmpty()
+        pop elemt add to result
+        add right element to stack, if not null
+        add left element to stack, if not null
+
+3. Postorder Traversal
+    - using 2 stacks -same as Preorder only diffrence add result in stack2
+        add node to stack
+        till stack !isEmpty()
+            pop element add to stack2
+            add left element to stack, if not null
+            add right element to stack, if not null
+
+    - using 1 stack
+      same as above only diffrence add result to
+      //add node value to front
+	  result.add(0, node.val);
+
+4. Level order traversal
+        
+5. Morris Inorder Traversal [TODO]
+6. Morris Preorder Traversal [TODO]
+   
+7. Left/Right view of binary tree
+    - left view - if (i == 0) result.add(node.val);
+    - right view - if (i == size - 1) result.add(node.val);
+
+8. Left/Right view using recurssion
+    - Right view
+        if (result.size() == level) {
+			result.add(node.val);
+		}
+
+    - Left view
+
+9. Vertical order traversal
+    - Level order + HasTable
+  
+10. Bottom View of Binary Tree
+    - map.put(hd, temp.data); // override every time data with same hd
+
+11. Top View of Binary Tree/ Vertical order traversal
+    -  if(map.get(hd) == null) map.put(hd, temp.data);  // only put if there is no element present for same hd
+
+12. Preorder inorder postorder in a single traversal [TODO]
+13. Print Root to Node Path in a Binary Tree for given node/ Path Sum II (return all root-to-leaf paths where the sum of the node values in the path equals targetSum)
+    - 
+14. root-to-leaf paths for all nodes
+15. Maximum Width of a Binary Tree [Imp]

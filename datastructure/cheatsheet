@@ -1,0 +1,11 @@
+Convert List<Integer> to int[]
+	result.stream().mapToInt(i -> i).toArray();
+
+Convert int[] to List<Integer>
+	Arrays.stream(result).boxed().collect(Collectors.toList());
+
+To check alphabet
+	Character.isAlphabetic()
+
+Convert int[] to String[]	
+	String[] array = Arrays.stream(nums).mapToObj(String::valueOf).toArray(String[]::new);
