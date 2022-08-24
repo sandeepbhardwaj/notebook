@@ -6,8 +6,15 @@
 2. Transpose matrix
     Code
     for (int i = 0; i < n; i++) {
-        //j < i – all the elemets till diagonal
+        //j < i – all the elements till diagonal
         for (int j = 0; j < i; j++) {
+            //swap
+        }
+    }
+
+    OR
+    for (int i = 0; i < row; i++) {
+        for (int j = i; j < column; j++) { // M.Imp Why j= i ?
             //swap
         }
     }
@@ -38,6 +45,19 @@
         }
     }
 
+    OR
+
+    public void reflect(int[][] matrix) {
+        int n = matrix.length;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n / 2; j++) {
+                int tmp = matrix[i][j];
+                matrix[i][j] = matrix[i][n - j - 1]; // add last element in first
+                matrix[i][n - j - 1] = tmp; // add first element in last
+            }
+        }
+    }
+
 4. Search in a sorted 2D matrix
     Code
     int val= matrix[mid/col][mid%col];
@@ -52,4 +72,16 @@
         else return countPaths(i+1,j,n,m)+countPaths(i,j+1,n,m); 
     }
 
- 
+6. Reshape Matrix
+    reshaped[i / c][i % c] = nums[i / n][i % n];
+
+7. MaxAreaOfIsland
+    return 1 + dfs(row-1,col) + dfs(row+1,col) + dfs(row,col-1) + dfs(row,col+1);
+
+ 8. ValidSudoku
+    if (!seen.add(number + " in row " + i) || !seen.add(number + " in column " + j) || !seen.add(number + " in block " + i / 3 + "-" + j / 3))
+        return false;
+
+9. Spiral Matrix
+    int left = 0, right = column - 1, top = 0, bottom = row - 1;
+

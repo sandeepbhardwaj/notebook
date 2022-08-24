@@ -1,0 +1,104 @@
+Processes vs Threads
+    - Process can contains n number of threads (Thread is a lightweight process).
+
+Strategies of Creating Thread (Runnable - task | thread - worker)
+    - runnable
+    - extends thread class
+    - Executor - way of running thread it do use one of the above method
+
+Pausing Execution of Thread
+    - sleep
+        - throws InterruptedException when another thread interrupts the current thread while sleep is active
+        - no locks are released when a thread goes to sleep
+    - Yield
+        - Major difference between yield and sleep in Java is that yield() method pauses the currently executing thread temporarily for giving a chance to the remaining waiting threads of the same priority to execute.
+        - based on the Thread Priorities concept
+    - Wait
+        - wait() method release the acquired monitor when thread is waiting
+        - wait method in java should be called from synchronized method or block
+        - wait() is an instance specific method and only got wake up if some other thread calls notify method on same object
+        - In case of sleep, sleeping thread immediately goes to Runnable state after waking up while in case of wait, waiting thread first acquires the lock and then goes into Runnable state
+    - Join
+        - throws InterruptedException
+        - allows one thread to wait for the completion of another
+        - t.join() - Causes the current thread to pause execution until t's thread terminates
+        - If any executing thread t1 calls join() on t2 i.e. t2.join() immediately t1 will enter into waiting state until t2 completes its execution
+
+Interrupts
+    - If any thread is in sleeping or waiting state (i.e. sleep() or wait() is invoked), calling the interrupt() method on the thread, breaks out the sleeping or waiting state throwing InterruptedException. If the thread is not in the sleeping or waiting state, calling the interrupt() method performs normal behaviour and doesn't interrupt the thread but sets the interrupt flag to true.
+    - An interrupt is an indication to a thread that it should stop what it is doing and do something else.
+    - implemented using an internal flag known as the interrupt status
+    - Sleep() clears the interrupted flag status, before throwing InterruptedException
+    
+    public void interrupt() >> used to interrupt thread
+    public static boolean interrupted() >> Return the interrupt status and cleared it.
+    public boolean isInterrupted() >> return the interrupt flag.
+
+Synchronization
+    - Thread Interference
+        - how errors are introduced when multiple threads access shared data
+    - Memory Consistency Errors
+        - errors that result from inconsistent views of shared memory.
+        - The key to avoiding memory consistency errors is understanding the happens-before relationship. This relationship is simply a guarantee that memory writes by one specific statement are visible to another specific statement.
+
+    -  constructors cannot be synchronized ??
+
+     - Intrinsic Locks and Synchronization
+        - Synchronization is built around an internal entity known as the intrinsic lock or monitor lock
+        - Every object has an intrinsic lock associated with it.
+        - By convention, a thread that needs exclusive and consistent access to an object's fields has to acquire the object's intrinsic lock before accessing them, and then release the intrinsic lock when it's done with them
+
+    - Major disadvantage of Java synchronized keyword is that it doesn't allow concurrent read, which can potentially limit scalability.
+    - Do not synchronize on non-final field on synchronized block in Java. because reference of non final field may change any time and then different thread might synchronizing on different objects.
+
+High Level Concurrency Objects
+    - Lock
+        - Lock - lock() | unlock() | tryLock()
+        - Condition - lock.newCondition() | await() | signal() | signalAll()
+        - ReadWriteLock
+        - ReentrantLock - isHeldByCurrentThread() | getHoldCount()
+        - ReentrantReadWriteLock
+            - The read lock may be held simultaneously by multiple reader threads,so long as there are no writers. The write lock is exclusive.
+
+    - Executor - <Interface>
+    - ExecutorService - <Interface>
+        - newFixedThreadPool
+        - 
+    - ScheduledExecutorService - <Interface> - scheduleAtFixedRate | scheduleWithFixedDelay
+    - ExecutorCompletionService - <Class>
+        ExecutorService threadPool = Executors.newFixedThreadPool(4);
+        CompletionService<String> pool = new ExecutorCompletionService<String>(threadPool);
+
+    - ConcurrentCollections
+    - Atomic Variables - CAS
+    - ThreadLocalRandom
+
+
+Java Concurrency
+
+Race Conditions and Critical Sections
+    - type of concurrency issue introduced by multiple threads accessing an object at same time
+    Two pattern
+        - check and act - Ex singleton
+        - read modify write - hashmap example
+
+Thread Signalling
+    - Signalling via Shared Objects
+    - Busy Wait
+    - wait(), notify() and notifyAll()
+    - Missed Signals
+    - Spurious Wakeups
+    
+    - why while loop for condition for wait - Multiple Threads Waiting for the Same Signals
+    - Don't call wait() on constant String's or global objects
+
+Starvation and Fairness
+Lock
+Semaphore
+Couting Semaphore
+Bounded Semaphore
+
+BlockingQueue
+ConcurrentMap
+CountDownLatch
+CyclicBarrier

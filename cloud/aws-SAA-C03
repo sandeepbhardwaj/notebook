@@ -1,0 +1,24 @@
+AWS Certified Solutions Architect Associate SAA-C03
+
+AWS regions (combination of AZ(comination of multiple datacenters))
+    Availibility zones
+        usually 3, min=2, max=6
+    Each AZ has one or more discrete datacenters with redundant power, networking and connectivity
+
+    AWS Global services
+        IAM - Identity and Access managment
+        DNS - Route 53
+        CloudFront - Content Delivery Network
+        WAF - Web Application Firewall
+    Most AWS services are Region-Scoped 
+        EC2 - Infrastucture as a service
+        Elastic Beanstalk - Platform as a service
+        Lambda - Function as a service
+        Rekognition - Software as a service
+    Region Table to check the available services
+
+IAM
+    IAM users, Groups and Policies
+    IAM role for AWS services
+
+   
