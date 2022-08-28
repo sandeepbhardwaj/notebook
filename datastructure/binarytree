@@ -1,16 +1,17 @@
 Day 17 - Binary Tree
 --------------------
 1. Inorder Traversal
+    TreeNode current = root;
     while (!stack.isEmpty() || current != null) {
         loop to go extreme left
         get the element from stack and add to result
         current = node.right; // get the right of node and assign it to current
     }
 
-2. Preorder Traversal
+2. Preorder Traversal (Right and then left in stack)
     add node to stack
     till stack !isEmpty()
-        pop elemt add to result
+        pop element add to result
         add right element to stack, if not null
         add left element to stack, if not null
 
@@ -46,6 +47,13 @@ Day 17 - Binary Tree
 
 9. Vertical order traversal
     - Level order + HasTable
+
+    Vertical order with Order by value - Tricky
+        class Pair {
+		TreeNode node;
+		int hd;
+		int level;
+        }
   
 10. Bottom View of Binary Tree
     - map.put(hd, temp.data); // override every time data with same hd
@@ -56,5 +64,30 @@ Day 17 - Binary Tree
 12. Preorder inorder postorder in a single traversal [TODO]
 13. Print Root to Node Path in a Binary Tree for given node/ Path Sum II (return all root-to-leaf paths where the sum of the node values in the path equals targetSum)
     - 
-14. root-to-leaf paths for all nodes
+14. Sum of Left Leaves/ Sum of Right Leaves / Path Sum
+        return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val);
+        return sumOfLeftLeaves(root.left, true) + sumOfLeftLeaves(root.right, false);
+
+16. ChildrenSumParent
+
 15. Maximum Width of a Binary Tree [Imp]
+        // +1 because root is not null so depth should be greater than 1
+        return 1 + Math.max(left_depth, right_depth); //"Bottom-up" Solution
+
+16. Balanced Binary Tree
+        public boolean isBalanced(TreeNode root) {
+            // for single node or no node
+            if (root == null || (root.left == null && root.right == null)) return true;
+
+            if (Math.abs(maxDepth(root.left) - maxDepth(root.right)) <= 1 && isBalanced(root.left) && isBalanced(root.right)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+17. Diameter of Tree - same as 16
+
+18. Invert Binary tree - understand recursive working [TODO]
+
+19.
