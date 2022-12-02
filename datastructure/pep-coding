@@ -1,0 +1,36 @@
+Basic
+	- Print all prime | Lec -14
+	- Print digits in a number | Lec -19
+	- Reverse a number | Lec -22
+	- Inverse a number | Lec -23
+	- Rotate a number (not an array of integer) | Lec -26
+	- GCD and LCM | Lec -27
+	- Prime factorization | Lec -30
+
+Number System
+	- Introduction of Number system | Lec -79 | M.Imp
+	- Decimal to any base
+	- Any base to decimal
+	- Any base to any base
+	- Any base additon
+	- Any base subtraction
+	- Any base multiplication
+
+Array
+	- Bar Chart
+	- Add
+	- Subtract
+	- Multiply
+
+Stack & Queue
+	- NGE
+	- 
+
+
+
+
+Notes
+	- % - modulo (remainder) opertaor
+	- Same priority * / %  greater than + - Same priority
+	- Execution of code left to right => 10 * 10 / 2 = 50
+	- isPrime => for(int i=2 ; i*i <=n ; i++)

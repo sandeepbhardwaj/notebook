@@ -1,0 +1,29 @@
+Chapter-3 | A FRAMEWORK FOR SYSTEM DESIGN INTERVIEWS
+------------------------
+4 Step process
+
+Step 1 - Understand the problem and establish design scope
+    - What specific features are we going to build?
+    - How many users does the product have?
+    - How fast does the company anticipate to scale up? What are the anticipated scales in 3 months, 6 months, and a year?
+    - What is the company’s technology stack? What existing services you might leverage to simplify the design?
+
+Step 2 - Propose high-level design and get buy-in
+Step 3 - Design deep dive
+Step 4 - Wrap up
+
+CHAPTER 4: DESIGN A RATE LIMITER
+------------------------
+Algorithms for rate limiting
+    - Token bucket
+    - Leaking bucket
+    - Fixed window counter
+    - Sliding window log
+    - Sliding window counter
+
+The token bucket algorithm takes two parameters:
+• Bucket size: the maximum number of tokens allowed in the bucket
+• Refill rate: number of tokens put into the bucket every second
+
+CHAPTER 5: DESIGN CONSISTENT HASHING
+------------------------
