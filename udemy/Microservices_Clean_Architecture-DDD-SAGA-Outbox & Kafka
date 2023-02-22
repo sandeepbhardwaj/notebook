@@ -1,0 +1,21 @@
+Choreography-based saga - No need of AXON can be handled using kafka only
+
+Orchestration-based saga - tools AXON
+
+Section 3. DDD
+-----------------------------------
+9 > Strategic DDD vs Tactical DDD
+
+Aggregate Root vs Entity vs value object
+
+
+Tools
+-------------------
+graphviz
+degraph-maven-plugin
+
+
+
+links
+--------------------
+https://medium.com/javarevisited/simple-implementation-of-axon-4-with-springboot-and-mongo-db-6ee25008459d

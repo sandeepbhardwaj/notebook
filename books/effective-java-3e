@@ -1,0 +1,53 @@
+https://github.com/jbloch/effective-java-3e-source-code
+
+
+Item 1: Consider static factory methods instead of constructors
+    - One advantage of static factory methods is that, unlike constructors, they have names.
+    - A second advantage of static factory methods is that, unlike constructors, they are not required to create a new object each time they’re invoked.
+    - A third advantage of static factory methods is that, unlike constructors, they can return an object of any subtype of their return type.
+    - A fourth advantage of static factories is that the class of the returned object can vary from call to call as a function of the input parameters
+    - A fifth advantage of static factories is that the class of the returned object need not exist when the class containing the method is written.
+
+    limitation
+    - The main limitation of providing only static factory methods is that classes without public or protected constructors cannot be subclassed.
+    - A second shortcoming of static factory methods is that they are hard for programmers to find.
+
+    public static Boolean valueOf(boolean b) {
+        return b ? Boolean.TRUE : Boolean.FALSE;
+    }
+
+
+Item 2: Consider a builder when faced with many constructor parameters
+    - The Builder pattern is well suited to class hierarchies
+
+
+Item 3: Enforce the singleton property with a private constructor or an enum type
+    - public static final Elvis INSTANCE = new Elvis();
+    - The main advantage of the public field approach is that the API makes it clear that the class is a singleton: the public static field is final, so it will always contain the same object reference.
+    - A third way to implement a singleton is to declare a single-element enum
+      - that you can’t use this approach if your singleton must extend a superclass other than Enum
+
+
+Item 4: Enforce noninstantiability with a private constructor
+    - A default constructor is generated only if a class contains no explicit constructors, so a class can be made noninstantiable by including a private constructor:
+    - As a side effect, this idiom also prevents the class from being subclassed. All constructors must invoke a superclass constructor, explicitly or implicitly, and a subclass would have no accessible superclass constructor to invoke
+
+
+Item 5: Prefer dependency injection to hardwiring resources
+    - Static utility classes and singletons are inappropriate for classes whose behavior is parameterized by an underlying resource
+    - pass the resource into the constructor when creating a new instance.
+
+    public SpellChecker(Lexicon dictionary) {
+        this.dictionary = Objects.requireNonNull(dictionary);
+    }
+
+    - A useful variant of the pattern is to pass a resource factory to the constructor. A factory is an object that can be called repeatedly to create instances of a type
+
+    Mosaic create(Supplier<? extends Tile> tileFactory) { ... }
+
+
+Item 6: Avoid creating unnecessary objects
+    - 
+
+
+
